@@ -1,9 +1,9 @@
 ### Open Redirect Payload List
 
 
-Unvalidated redirects and forwards are possible when a web application accepts untrusted input that could cause the web application to redirect the request to a URL contained within untrusted input. By modifying untrusted URL input to a malicious site, an attacker may successfully launch a phishing scam and steal user credentials.
+"Unvalidated redirects aur forwards tab possible hote hain jab ek web application aise input ko accept karta hai jo trusted nahi hota, aur us input ki wajah se user ko kisi aur URL par redirect kar diya jata hai. Agar attacker is input ko modify karke kisi malicious (dangerous) site ka URL daal deta hai, to wo phishing attack launch kar sakta hai aur users ke login details ya credentials chura sakta hai."
 
-Because the server name in the modified link is identical to the original site, phishing attempts may have a more trustworthy appearance. Unvalidated redirect and forward attacks can also be used to maliciously craft a URL that would pass the application’s access control check and then forward the attacker to privileged functions that they would normally not be able to access.
+"Kyunki modified link mein server name original site ke jaisa hi hota hai, is wajah se phishing attempts zyada trustworthy (ya real) lagte hain. Unvalidated redirect aur forward attacks ka use attacker is tarah se bhi kar sakta hai ki wo ek aisa URL banaye jo application ke access control check ko pass kar jaye, aur fir attacker ko un privileged functions tak le jaye jahan normally usse access nahi milta."
 
 #### Java :
 
@@ -32,7 +32,7 @@ Response.Redirect("~/folder/Login.aspx")
 redirect_to login_path
 ```
 
-In the examples above, the URL is being explicitly declared in the code and cannot be manipulated by an attacker.
+"Upar diye gaye examples mein, URL code ke andar clearly declare kiya gaya hai, isliye attacker usse manipulate (badal) nahi kar sakta."
 
 #### Dangerous URL Redirects
 

@@ -36,24 +36,24 @@ redirect_to login_path
 
 #### Dangerous URL Redirects
 
-The following examples demonstrate unsafe redirect and forward code.
+"Neeche diye gaye examples unsafe (suraksha ke liye khatarnak) redirect aur forward code ko dikhate hain."
 
 #### Dangerous URL Redirect Example 1
 
-The following Java code receives the URL from the parameter named url (GET or POST) and redirects to that URL:
+"Neeche diya gaya Java code ek parameter jiska naam url hai (GET ya POST request se aata hai) se URL receive karta hai, aur user ko usi URL par redirect kar deta hai:"
 
 ```
 response.sendRedirect(request.getParameter("url"));
 ```
 
-The following PHP code obtains a URL from the query string (via the parameter named url) and then redirects the user to that URL:
+"Neeche diya gaya PHP code query string se (jisme parameter ka naam url hai) ek URL leta hai, aur fir user ko us URL par redirect kar deta hai:"
 
 ```
 $redirect_url = $_GET['url'];
 header("Location: " . $redirect_url);
 ```
 
-A similar example of C# .NET Vulnerable Code:
+"C# .NET ka ek milta-julta vulnerable (kamzor ya unsafe) code ka example neeche diya gaya hai:"
 
 ```
 string url = request.QueryString["url"];
@@ -66,23 +66,24 @@ And in Rails:
 redirect_to params[:url]
 ```
 
-The above code is vulnerable to an attack if no validation or extra method controls are applied to verify the certainty of the URL. This vulnerability could be used as part of a phishing scam by redirecting users to a malicious site.
+"Upar wala code vulnerable (kamzor) hai agar usme URL ki validity check karne ke liye koi validation ya extra control method apply nahi kiya gaya ho. Is vulnerability ka misuse phishing scam ke liye ho sakta hai, jisme users ko malicious site par redirect kiya ja sakta hai."
 
-If no validation is applied, a malicious user could create a hyperlink to redirect your users to an unvalidated malicious website, for example:
+"Agar koi validation apply nahi kiya gaya, to ek malicious user aisi hyperlink bana sakta hai jo aapke users ko ek unvalidated aur malicious website par redirect kar de, jaise ki:"
 
 ```
 http://example.com/example.php?url=http://malicious.example.com
 ```
 
-The user sees the link directing to the original trusted site (```example.com```) and does not realize the redirection that could take place
+"User link ko original trusted site (example.com) ke liye jaate hue dekhta hai, aur usse pata nahi chalta ki actually wo redirect hokar kisi aur site par ja sakta hai."
 
 #### Dangerous URL Redirect Example 2
 
-ASP .NET MVC 1 & 2 websites are particularly vulnerable to open redirection attacks. In order to avoid this vulnerability, you need to apply MVC 3.
+"ASP .NET MVC 1 aur 2 websites specially open redirection attacks ke liye vulnerable hoti hain. Is vulnerability se bachne ke liye, aapko MVC 3 use karna chahiye."
 
-The code for the LogOn action in an ASP.NET MVC 2 application is shown below. After a successful login, the controller returns a redirect to the returnUrl. You can see that no validation is being performed against the returnUrl parameter.
+"ASP.NET MVC 2 application mein LogOn action ka code neeche dikhaya gaya hai. Successful login ke baad, controller returnUrl par redirect karta hai. Aap dekh sakte ho ki returnUrl parameter ke against koi validation perform nahi ki ja rahi."
 
-ASP.NET MVC 2 LogOn action in ```AccountController.cs``` (see Microsoft Docs link provided above for the context):
+
+"ASP.NET MVC 2 mein LogOn action, jo AccountController.cs mein hota hai (context ke liye upar diye gaye Microsoft Docs link ko dekhein):"
 
 ```
 [HttpPost]
@@ -115,14 +116,19 @@ ASP.NET MVC 2 LogOn action in ```AccountController.cs``` (see Microsoft Docs lin
 
 #### Preventing Unvalidated Redirects and Forwards
 
-Safe use of redirects and forwards can be done in a number of ways:
+"Redirects aur forwards ka safe use kai tareekon se kiya ja sakta hai:
 
-* Simply avoid using redirects and forwards.
-* If used, do not allow the url as user input for the destination. This can usually be done. In this case, you should have a method to validate URL.
-* If user input can’t be avoided, ensure that the supplied value is valid, appropriate for the application, and is authorized for the user.
-* It is recommended that any such destination input be mapped to a value, rather than the actual URL or portion of the URL, and that server side code translate this value to the target URL.
-* Sanitize input by creating a list of trusted URL's (lists of hosts or a regex).
-* Force all redirects to first go through a page notifying users that they are going off of your site, and have them click a link to confirm.
+* Redirects aur forwards ka use avoid karne ki koshish karo.
+
+* Agar use karna zaroori ho, toh destination ke liye user input se URL allow na karo. Yeh usually kiya ja sakta hai. Is case mein, aapko URL validate karne ke liye ek method hona chahiye.
+
+* Agar user input ko avoid nahi kiya ja sakta, toh ensure karo ki diya gaya value valid ho, application ke liye appropriate ho, aur user ke liye authorized ho.
+
+* Yeh recommend kiya jata hai ki destination input ko actual URL ya URL ke portion ki jagah kisi mapped value ke roop mein use kiya jaye, aur server side code is value ko target URL mein translate kare.
+
+* Input ko sanitize karo, trusted URL's ki list (hosts ya regex ka use) create karke.
+
+* Sabhi redirects ko pehle ek aise page par bhejo jo user ko notify kare ki wo aapke site se bahar ja rahe hain, aur unhe link par click karke confirm karna pade."
 
 #### Open Redirect Payload List :
 
